@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Tutorial - Codespaces, Copilot & Pages</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2em;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        nav a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #2c3e50;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        h3 {
+            color: #34495e;
+            font-size: 1.5em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .step {
+            background: #f8f9fa;
+            padding: 20px;
+            border-left: 5px solid #667eea;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+
+        .step h4 {
+            display: inline;
+            color: #2c3e50;
+            font-size: 1.2em;
+        }
+
+        .step p {
+            margin-top: 15px;
+            margin-left: 50px;
+            color: #555;
+        }
+
+        .step code {
+            background: #e8eaf6;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #d63384;
+        }
+
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .tip {
+            background: #d4edda;
+            border-left: 5px solid #28a745;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .tip strong {
+            color: #155724;
+        }
+
+        .warning {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .warning strong {
+            color: #856404;
+        }
+
+        ul {
+            margin-left: 50px;
+            margin-top: 10px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        footer {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            nav {
+                flex-direction: column;
+            }
+
+            nav a {
+                width: 100%;
+                text-align: center;
+            }
+
+            .section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 Build Your Website with GitHub</h1>
+            <p class="subtitle">A Complete Guide to Codespaces, Copilot, and GitHub Pages</p>
+        </header>
+
+        <nav>
+            <a href="#codespaces">GitHub Codespaces</a>
+            <a href="#copilot">GitHub Copilot</a>
+            <a href="#pages">GitHub Pages</a>
+            <a href="#complete">Complete Tutorial</a>
+        </nav>
+
+        <section id="codespaces" class="section">
+            <h2>📦 Getting Started with GitHub Codespaces</h2>
+            <p>GitHub Codespaces provides a complete development environment in your browser. No local setup required!</p>
+
+            <h3>What is GitHub Codespaces?</h3>
+            <p>GitHub Codespaces is a cloud-based development environment that runs directly in your browser. It gives you a full Visual Studio Code experience without installing anything on your computer.</p>
+
+            <div class="step">
+                <span class="step-number">1</span>
+                <h4>Create a GitHub Account</h4>
+                <p>If you don't have one already, go to <code>github.com</code> and sign up for a free account.</p>
+            </div>
+
+            <div class="step">
+                <span class="step-number">2</span>
+                <h4>Create a New Repository</h4>
+                <p>Click the <code>+</code> icon in the top right corner and select "New repository".</p>
+                <ul>
+                    <li>Give it a name (e.g., "my-first-website")</li>
+                    <li>Add a description</li>
+                    <li>Choose "Public" visibility</li>
+                    <li>Check "Add a README file"</li>
+                    <li>Click "Create repository"</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <span class="step-number">3</span>
+                <h4>Launch Codespaces</h4>
+                <p>On your repository page:</p>
+                <ul>
+                    <li>Click the green <code>&lt;&gt; Code</code> button</li>
+                    <li>Select the "Codespaces" tab</li>
+                    <li>Click "Create codespace on main"</li>
+                    <li>Wait for your environment to load (this may take 1-2 minutes)</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <span class="step-number">4</span>
+                <h4>Explore Your Codespace</h4>
+                <p>You now have a full VS Code editor in your browser! The interface includes:</p>
+                <ul>
+                    <li><strong>Explorer</strong> (left sidebar): Browse your files</li>
+                    <li><strong>Editor</strong> (center): Write your code</li>
+                    <li><strong>Terminal</strong> (bottom): Run commands</li>
+                </ul>
+            </div>
+
+            <div class="tip">
+                <strong>💡 Tip:</strong> Codespaces automatically saves your work. You get 60 hours of free usage per month!
+            </div>
+        </section>
+
+        <section id="copilot" class="section">
+            <h2>🤖 Using GitHub Copilot</h2>
+            <p>GitHub Copilot is your AI pair programmer that helps you write code faster and smarter.</p>
+
+            <h3>What is GitHub Copilot?</h3>
+            <p>GitHub Copilot is an AI-powered code completion tool that suggests entire lines or blocks of code as you type. It's like having an experienced developer helping you!</p>
+
+            <div class="step">
+                <span class="step-number">1</span>
+                <h4>Enable GitHub Copilot</h4>
+                <p>For students and educators, Copilot is free!</p>
+                <ul>
+                    <li>Go to <code>github.com/settings/copilot</code></li>
+                    <li>Click "Get access to GitHub Copilot"</li>
+                    <li>If you're a student, apply for the GitHub Student Developer Pack at <code>education.github.com</code></li>
+                    <li>Once approved, Copilot will be automatically available in your Codespaces</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <span class="step-number">2</span>
+                <h4>Copilot in Action</h4>
+                <p>Start typing in your editor and watch Copilot suggest completions in gray text.</p>
+                <ul>
+                    <li>Press <code>Tab</code> to accept a suggestion</li>
+                    <li>Press <code>Esc</code> to dismiss a suggestion</li>
+                    <li>Use <code>Alt + ]</code> or <code>Option + ]</code> to see the next suggestion</li>
+                    <li>Use <code>Alt + [</code> or <code>Option + [</code> to see the previous suggestion</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <span class="step-number">3</span>
+                <h4>Write Code with Copilot</h4>
+                <p>Try typing a comment describing what you want to do:</p>
+                <div class="code-block">// Create a function that adds two numbers</div>
+                <p>Copilot will suggest the complete function! Accept it with <code>Tab</code>.</p>
+            </div>
+
+            <div class="step">
+                <span class="step-number">4</span>
+                <h4>Best Practices</h4>
+                <ul>
+                    <li>Write clear comments to get better suggestions</li>
+                    <li>Give your variables and functions descriptive names</li>
+                    <li>Review Copilot's suggestions before accepting them</li>
+                    <li>Use Copilot to learn new patterns and techniques</li>
+                </ul>
+            </div>
+
+            <div class="tip">
+                <strong>💡 Tip:</strong> Copilot learns from your coding style. The more you use it, the better it gets at helping you!
+            </div>
+        </section>
+
+        <section id="pages" class="section">
+            <h2>🌐 Hosting with GitHub Pages</h2>
+            <p>GitHub Pages lets you host your website directly from your GitHub repository - completely free!</p>
+
+            <h3>What is GitHub Pages?</h3>
+            <p>GitHub Pages is a free hosting service that turns your repository into a live website. Perfect for personal projects, portfolios, and documentation.</p>
+
+            <div class="step">
+                <span class="step-number">1</span>
+                <h4>Prepare Your Website Files</h4>
+                <p>Your repository needs at least an <code>index.html</code> file. This will be your homepage.</p>
+            </div>
+
+            <div class="step">
+                <span class="step-number">2</span>
+                <h4>Commit Your Files</h4>
+                <p>In your Codespace terminal, run these commands:</p>
+                <div class="code-block">git add .
+git commit -m "Add website files"
+git push</div>
+            </div>
+
+            <div class="step">
+                <span class="step-number">3</span>
+                <h4>Enable GitHub Pages</h4>
+                <p>Go to your repository on GitHub:</p>
+                <ul>
+                    <li>Click on "Settings" tab</li>
+                    <li>Scroll down and click "Pages" in the left sidebar</li>
+                    <li>Under "Source", select "main" branch</li>
+                    <li>Click "Save"</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <span class="step-number">4</span>
+                <h4>Access Your Website</h4>
+                <p>After a few minutes, your site will be live at:</p>
+                <div class="code-block">https://your-username.github.io/repository-name</div>
+                <p>The URL will be shown at the top of the Pages settings.</p>
+            </div>
+
+            <div class="tip">
+                <strong>💡 Tip:</strong> Every time you push changes to your repository, GitHub Pages automatically updates your website!
+            </div>
+        </section>
+
+        <section id="complete" class="section">
+            <h2>🎯 Complete Tutorial: Build & Deploy Your First Website</h2>
+            <p>Follow this complete step-by-step guide to create and publish your website!</p>
+
+            <h3>Step 1: Set Up Your Project</h3>
+            <div class="step">
+                <span class="step-number">1</span>
+                <h4>Create Repository</h4>
+                <p>Go to GitHub and create a new repository named "my-portfolio".</p>
+            </div>
+
+            <div class="step">
+                <span class="step-number">2</span>
+                <h4>Open in Codespaces</h4>
+                <p>Click Code → Codespaces → Create codespace on main.</p>
+            </div>
+
+            <h3>Step 2: Create Your Website</h3>
+            <div class="step">
+                <span class="step-number">3</span>
+                <h4>Create index.html</h4>
+                <p>In the Explorer, right-click and select "New File". Name it <code>index.html</code>.</p>
+            </div>
+
+            <div class="step">
+                <span class="step-number">4</span>
+                <h4>Use Copilot to Write HTML</h4>
+                <p>Type this comment at the top of your file:</p>
+                <div class="code-block">&lt;!-- Create a personal portfolio website with header, about section, and footer --&gt;</div>
+                <p>Let Copilot suggest the HTML structure. Press <code>Tab</code> to accept suggestions!</p>
+            </div>
+
+            <div class="step">
+                <span class="step-number">5</span>
+                <h4>Add Your Content</h4>
+                <p>Customize the suggested code with your own information:</p>
+                <ul>
+                    <li>Your name and photo</li>
+                    <li>About yourself</li>
+                    <li>Your skills and projects</li>
+                    <li>Contact information</li>
+                </ul>
+            </div>
+
+            <h3>Step 3: Preview Your Website</h3>
+            <div class="step">
+                <span class="step-number">6</span>
+                <h4>Open with Live Server</h4>
+                <p>Right-click on <code>index.html</code> and select "Open with Live Server" or simply open the file in your browser.</p>
+            </div>
+
+            <div class="step">
+                <span class="step-number">7</span>
+                <h4>Make Improvements</h4>
+                <p>Don't like something? Use Copilot to help you:</p>
+                <ul>
+                    <li>Type <code>/* Add a gradient background */</code> in your CSS</li>
+                    <li>Type <code>// Add smooth scrolling</code> in your JavaScript</li>
+                    <li>Let Copilot suggest the code!</li>
+                </ul>
+            </div>
+
+            <h3>Step 4: Deploy to GitHub Pages</h3>
+            <div class="step">
+                <span class="step-number">8</span>
+                <h4>Save Your Work</h4>
+                <p>In the terminal (press <code>Ctrl + `</code> to open), run:</p>
+                <div class="code-block">git add .
+git commit -m "Create my portfolio website"
+git push</div>
+            </div>
+
+            <div class="step">
+                <span class="step-number">9</span>
+                <h4>Enable GitHub Pages</h4>
+                <p>Go to Settings → Pages → Select "main" branch → Save.</p>
+            </div>
+
+            <div class="step">
+                <span class="step-number">10</span>
+                <h4>View Your Live Website!</h4>
+                <p>Wait 1-2 minutes, then visit your site at:</p>
+                <div class="code-block">https://your-username.github.io/my-portfolio</div>
+                <p>🎉 Congratulations! You've built and deployed your first website!</p>
+            </div>
+
+            <div class="warning">
+                <strong>⚠️ Remember:</strong> Any changes you push to your repository will automatically update your live website. Always test locally first!
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>📚 Additional Resources</h2>
+            <ul>
+                <li><strong>GitHub Docs:</strong> docs.github.com</li>
+                <li><strong>GitHub Codespaces:</strong> docs.github.com/codespaces</li>
+                <li><strong>GitHub Copilot:</strong> github.com/features/copilot</li>
+                <li><strong>GitHub Pages:</strong> pages.github.com</li>
+                <li><strong>Student Developer Pack:</strong> education.github.com/pack</li>
+            </ul>
+
+            <h3>Next Steps</h3>
+            <ul>
+                <li>Explore HTML, CSS, and JavaScript tutorials</li>
+                <li>Learn about responsive web design</li>
+                <li>Add custom domains to your GitHub Pages site</li>
+                <li>Explore Jekyll for static site generation</li>
+                <li>Join the GitHub community and contribute to open source</li>
+            </ul>
+        </section>
+
+        <footer>
+            <p>Made with ❤️ for students learning web development</p>
+            <p>This tutorial is hosted on GitHub Pages!</p>
+        </footer>
+    </div>
+</body>
+</html>
